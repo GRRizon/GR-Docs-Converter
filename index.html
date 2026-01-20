@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GR Docs Converter</title>
+    
+    <link rel="icon" type="image/png" href="Project_Logo.png">
+    
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config = { darkMode: 'class' }</script>
@@ -19,29 +22,36 @@
 
     <div class="max-w-4xl mx-auto py-12 px-4">
         <header class="flex justify-between items-center mb-10">
-            <div class="flex items-center gap-3">
-                <div class="bg-blue-600 text-white w-12 h-12 rounded-xl flex items-center justify-center font-bold text-2xl shadow-lg ring-4 ring-blue-100 dark:ring-blue-900/30">GR</div>
+            <div class="flex items-center gap-4">
+                <div class="relative">
+                    <img src="Project_Logo.png" 
+                         alt="GR Docs Logo" 
+                         class="w-14 h-14 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white dark:border-slate-900 rounded-full"></div>
+                </div>
                 <div>
-                    <h1 class="text-2xl font-bold text-slate-800 dark:text-white leading-none tracking-tight">GR Docs</h1>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional Document Suite</p>
+                    <h1 class="text-2xl font-black text-slate-800 dark:text-white leading-none tracking-tight flex items-center gap-2">
+                        GR Docs Conversion
+                    </h1>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium italic">Premium Conversion Suite</p>
                 </div>
             </div>
-            <button id="darkModeToggle" class="p-3 bg-white dark:bg-slate-800 rounded-2xl shadow-sm text-slate-600 dark:text-yellow-400 border border-slate-200 dark:border-slate-700 transition-all">
+            <button id="darkModeToggle" class="p-3 bg-white dark:bg-slate-800 rounded-2xl shadow-sm text-slate-600 dark:text-yellow-400 border border-slate-200 dark:border-slate-700 transition-all hover:bg-slate-50 dark:hover:bg-slate-700">
                 <i data-lucide="moon" id="themeIcon" class="w-5 h-5"></i>
             </button>
         </header>
 
         <main>
-            <div id="dropZone" class="bg-white dark:bg-slate-800 border-2 border-dashed border-blue-400 dark:border-blue-500 rounded-3xl p-16 text-center hover:border-blue-600 transition-all cursor-pointer group shadow-sm">
+            <div id="dropZone" class="bg-white dark:bg-slate-800 border-2 border-dashed border-blue-400 dark:border-blue-500 rounded-3xl p-16 text-center hover:border-blue-600 transition-all cursor-pointer group shadow-sm hover:shadow-2xl">
                 <input type="file" id="fileInput" class="hidden" multiple accept=".jpg,.jpeg,.png,.webp,.pdf,.docx">
                 <div class="flex flex-col items-center">
-                    <div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-2xl mb-4 group-hover:scale-110 transition-transform">
+                    <div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-2xl mb-4 group-hover:rotate-6 transition-all duration-300">
                         <i data-lucide="file-up" class="w-12 h-12 text-blue-600"></i>
                     </div>
-                    <p class="text-xl font-semibold text-slate-700 dark:text-slate-200">Upload Images or Documents</p>
-                    <p class="text-sm text-slate-400 mt-2">Supports JPG, PNG, PDF, & DOCX</p>
-                    <button onclick="document.getElementById('fileInput').click()" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg">
-                        Select Files
+                    <p class="text-xl font-bold text-slate-700 dark:text-slate-200">Drag & Drop Documents</p>
+                    <p class="text-sm text-slate-400 mt-2">DOCX, PDF, & High-Res Images</p>
+                    <button onclick="document.getElementById('fileInput').click()" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg active:scale-95">
+                        Browse Files
                     </button>
                 </div>
             </div>
@@ -50,8 +60,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div id="compressionWrapper" class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
                         <div class="flex justify-between items-center mb-4">
-                            <label class="text-sm font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider flex items-center gap-2">
-                                <i data-lucide="settings-2" class="w-4 h-4 text-blue-500"></i> Quality
+                            <label class="text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                                <i data-lucide="sliders" class="w-4 h-4 text-blue-500"></i> Compression
                             </label>
                             <span id="qualityValue" class="text-lg font-black text-blue-600">90%</span>
                         </div>
@@ -59,28 +69,28 @@
                     </div>
 
                     <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                        <label class="text-sm font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider flex items-center gap-2 mb-4">
-                            <i data-lucide="type" class="w-4 h-4 text-blue-500"></i> Export Mode
+                        <label class="text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest flex items-center gap-2 mb-4">
+                            <i data-lucide="file-output" class="w-4 h-4 text-blue-500"></i> Export Format
                         </label>
-                        <select id="formatSelect" class="w-full bg-slate-50 dark:bg-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500">
-                            <optgroup label="Images">
-                                <option value="png">to PNG Image</option>
-                                <option value="jpeg">to JPG Image</option>
+                        <select id="formatSelect" class="w-full bg-slate-50 dark:bg-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 font-bold">
+                            <optgroup label="Image Formats">
+                                <option value="png">Portable Network Graphics (.png)</option>
+                                <option value="jpeg">Joint Photographic Group (.jpg)</option>
                             </optgroup>
-                            <optgroup label="Documents">
-                                <option value="pdf">to PDF Document</option>
-                                <option value="docx">to DOCX (Word)</option>
+                            <optgroup label="Document Formats">
+                                <option value="pdf" selected>Portable Document Format (.pdf)</option>
+                                <option value="docx">Microsoft Word (.docx)</option>
                             </optgroup>
                         </select>
                     </div>
                 </div>
 
-                <div id="fileList" class="grid grid-cols-1 gap-3 max-h-64 overflow-y-auto pr-2"></div>
+                <div id="fileList" class="grid grid-cols-1 gap-3 max-h-64 overflow-y-auto pr-2 custom-scrollbar"></div>
                 
-                <div class="flex justify-end bg-slate-100 dark:bg-slate-800/50 p-4 rounded-2xl">
-                    <button id="convertBtn" class="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-10 py-3 rounded-xl font-black transition-all shadow-lg flex items-center justify-center gap-2">
+                <div class="flex justify-end bg-slate-100 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <button id="convertBtn" class="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-xl font-black transition-all shadow-xl hover:shadow-green-500/20 active:scale-95 flex items-center justify-center gap-2">
                         <i data-lucide="zap" class="w-5 h-5"></i>
-                        Run Conversion
+                        Convert All Files
                     </button>
                 </div>
             </section>
