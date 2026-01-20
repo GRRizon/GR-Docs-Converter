@@ -1,67 +1,35 @@
-/* Custom Scrollbar for the File List */
-::-webkit-scrollbar {
-    width: 8px;
+/* Smooth Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
 }
-::-webkit-scrollbar-track {
+.custom-scrollbar::-webkit-scrollbar-track {
     background: transparent;
 }
-::-webkit-scrollbar-thumb {
+.custom-scrollbar::-webkit-scrollbar-thumb {
     background: #cbd5e1;
     border-radius: 10px;
 }
-.dark ::-webkit-scrollbar-thumb {
-    background: #334155;
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #475569;
 }
 
-/* Smooth Transitions for Theme Swapping */
+/* Toast Animations */
+.toast {
+    animation: slideIn 0.3s ease-out forwards;
+    min-width: 280px;
+}
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+.toast.removing {
+    animation: slideOut 0.3s ease-in forwards;
+}
+@keyframes slideOut {
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* Base Transition */
 body {
-    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
-}
-
-/* Glassmorphism Effect for the Preview Container */
-#compressionWrapper {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-/* Custom Range Slider Styling */
-#qualitySlider {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 8px;
-    background: #dbeafe;
-    border-radius: 5px;
-    outline: none;
-}
-
-.dark #qualitySlider {
-    background: #1e293b;
-}
-
-#qualitySlider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #2563eb;
-    cursor: pointer;
-    border-radius: 50%;
-    border: 2px solid white;
-    box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
-    transition: transform 0.2s ease;
-}
-
-#qualitySlider::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
-}
-
-/* Animation for the Upload Icon */
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-}
-
-.group:hover i[data-lucide="upload-cloud"] {
-    animation: float 2s infinite ease-in-out;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
